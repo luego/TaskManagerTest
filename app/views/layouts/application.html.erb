@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "TaskManager" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -13,10 +13,68 @@
 
   <body>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="/">TaskManager</a></h1>
+      </li>
+      <li class="toggle-topbar menu-icon">
+        <a href="#">Menu</a>
+      </li>
+    </ul>
 
-    <%= yield %>
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <% if user_signed_in? %>
+
+        <li>
+          <%=
+          link_to current_user.name, edit_user_registration_path
+          %>
+        </li>
+        <li>
+          <%=
+          link_to 'Log Out', logout_path, method: :delete
+          %>
+        </li>
+
+        <% else %>
+
+        <li>
+          <%=
+          link_to 'Sign Up', register_path, class: "button"
+          %>
+        </li>
+        <li>
+          <%=
+          link_to 'Sign In', login_path
+          %>
+        </li>
+
+        <% end %>
+      </ul>
+    </section>
+  </nav>
+  <div class="row">
+    <div class="large-12 columns">
+      <% if flash[:notice] %>
+      <div data-alert class="alert-box radius">
+      <%= notice %>
+      <a href="#" class="close">&times;</a>
+      </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+      <div data-alert class="alert-box radius warning">
+      <%= alert %>
+      <a href="#" class="close">&times;</a>
+      </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </div>
     <%= javascript_include_tag "application" %>
   </body>
 </html>
