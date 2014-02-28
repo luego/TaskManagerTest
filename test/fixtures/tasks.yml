@@ -1,11 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  user: 
-  done: false
-
-two:
-  name: MyString
-  user: 
-  done: false
+  name: Test Task asdas
+  done: 1
+  user: cesar

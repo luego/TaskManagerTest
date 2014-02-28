@@ -11,9 +11,10 @@ class TasksControllerTest < ActionController::TestCase
     assert_not_nil assigns(:tasks)
   end
 
-  test "should get new" do
+  test "debo estar autenticado antes sino ir a iniciar session" do
     get :new
-    assert_response :success
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
   end
 
   test "should create task" do
