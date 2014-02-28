@@ -1,6 +1,6 @@
 TaskManagerTest::Application.routes.draw do
   resources :tasks
-
+  get "todos", to: "tasks#index", as: :todos
 
   devise_for :users
 
@@ -9,6 +9,7 @@ TaskManagerTest::Application.routes.draw do
     get "logout", to: "devise/sessions#destroy", as: :logout
     get "register", to: "devise/registrations#new", as: :register
   end
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
